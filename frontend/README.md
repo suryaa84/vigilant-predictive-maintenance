@@ -1,75 +1,44 @@
-# React + TypeScript + Vite
+# VIGILANT Frontend — Milestone 1
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern industrial SaaS dashboard for predictive maintenance of rotating equipment.
 
-Currently, two official plugins are available:
+## Scripts
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `npm run dev` — Starts local Vite development server
+- `npm run build` — Compiles TypeScript (`tsc -b`) and bundles production assets with Vite
+- `npm run lint` — Runs ESLint rules
+- `npm run preview` — Locally previews production build
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Architecture & File Structure
 
 ```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+src/
+├── types/
+│   └── index.ts                 # Strong TypeScript contracts for telemetry & machines
+├── data/
+│   └── mockData.ts              # High-fidelity simulated industrial datasets (ISO 10816-3)
+├── components/
+│   ├── common/
+│   │   ├── Badge.tsx            # Industrial severity status tags
+│   │   ├── DemoTag.tsx          # Consistent MOCK/DEMO indicator badge
+│   │   └── StatusPill.tsx       # Live status indicators (healthy, warning, critical, offline)
+│   ├── layout/
+│   │   ├── AppLayout.tsx        # Persistent shell layout with responsive margins
+│   │   ├── Sidebar.tsx          # Collapsible desktop & mobile navigation sidebar
+│   │   ├── Header.tsx           # Machine selector, notifications, breadcrumb, profile
+│   │   └── NotificationDrawer.tsx # Simulated alerts popover with timestamped events
+│   └── dashboard/
+│       ├── SystemStatusStrip.tsx    # Prominent hardware disconnected / mock notice
+│       ├── KpiCard.tsx              # 4 core KPI metric cards (Health, RPM, Temp, Vibration)
+│       ├── SensorTrendsChart.tsx    # Recharts multi-sensor timeseries with range selector
+│       ├── MachineStatusCard.tsx    # Asset details, uptime, speed, inspection schedule
+│       ├── FaultDistributionCard.tsx # Recharts donut & breakdown list
+│       ├── RecentAlertsList.tsx     # Simulated events with severity filters & acknowledgment
+│       └── MaintenanceSummaryCard.tsx # Next inspection window, CBM actions, work orders
+├── pages/
+│   ├── OverviewPage.tsx         # Milestone 1 flagship industrial dashboard
+│   └── PlaceholderPage.tsx      # Polished placeholder screens with future milestone specs
+├── App.tsx                      # React Router provider & state management
+├── main.tsx                     # React root mount
+└── index.css                    # Tailwind CSS v4 configuration & theme styling
 ```
