@@ -14,7 +14,7 @@ export const DemoTag: React.FC<DemoTagProps> = ({
   return (
     <span
       title={tooltip}
-      className={`inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-semibold tracking-widest uppercase rounded border bg-amber-500/10 text-amber-300 border-amber-500/30 select-none cursor-help ${className}`}
+      className={`inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-semibold tracking-widest uppercase rounded border bg-amber-50 text-amber-800 border-amber-300/80 dark:bg-amber-500/10 dark:text-amber-300 dark:border-amber-500/30 select-none cursor-help theme-transition ${className}`}
     >
       {label}
     </span>

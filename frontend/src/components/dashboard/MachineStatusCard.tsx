@@ -19,22 +19,22 @@ interface MachineStatusCardProps {
 
 export const MachineStatusCard: React.FC<MachineStatusCardProps> = ({ machine }) => {
   return (
-    <div className="rounded-xl bg-[#0d121e] border border-slate-800/90 p-5 shadow-sm flex flex-col justify-between">
+    <div className="rounded-xl bg-white dark:bg-[#0d121e] border border-slate-200/90 dark:border-slate-800/90 p-5 shadow-sm dark:shadow-none flex flex-col justify-between theme-transition">
       {/* Header */}
       <div>
-        <div className="flex items-start justify-between gap-3 pb-3.5 border-b border-slate-800/80">
+        <div className="flex items-start justify-between gap-3 pb-3.5 border-b border-slate-100 dark:border-slate-800/80">
           <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
+            <div className="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 flex items-center justify-center text-emerald-700 dark:text-emerald-400 shrink-0">
               <Cpu className="w-5 h-5" />
             </div>
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <h3 className="text-sm font-bold text-slate-100 font-mono">
+                <h3 className="text-sm font-bold text-slate-900 dark:text-slate-100 font-mono">
                   {machine.name}
                 </h3>
                 <StatusPill status={machine.status} />
               </div>
-              <p className="text-xs font-mono text-slate-400 mt-0.5">
+              <p className="text-xs font-mono text-slate-500 dark:text-slate-400 mt-0.5">
                 Tag: {machine.tag}
               </p>
             </div>
@@ -45,77 +45,77 @@ export const MachineStatusCard: React.FC<MachineStatusCardProps> = ({ machine })
 
         {/* Machine Type and Location */}
         <div className="mt-3.5 space-y-1.5 text-xs">
-          <div className="flex items-center gap-2 text-slate-300">
-            <Zap className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-            <span className="text-slate-400">Class:</span>
-            <span className="font-medium text-slate-200">{machine.type}</span>
+          <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+            <Zap className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+            <span className="text-slate-500 dark:text-slate-400">Class:</span>
+            <span className="font-medium text-slate-800 dark:text-slate-200">{machine.type}</span>
           </div>
 
-          <div className="flex items-center gap-2 text-slate-300">
-            <MapPin className="w-3.5 h-3.5 text-sky-400 shrink-0" />
-            <span className="text-slate-400">Location:</span>
-            <span className="font-medium text-slate-200">{machine.location}</span>
+          <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
+            <MapPin className="w-3.5 h-3.5 text-sky-500 shrink-0" />
+            <span className="text-slate-500 dark:text-slate-400">Location:</span>
+            <span className="font-medium text-slate-800 dark:text-slate-200">{machine.location}</span>
           </div>
         </div>
 
         {/* Core Specs Grid */}
         <div className="grid grid-cols-2 gap-3 mt-4">
           {/* Uptime */}
-          <div className="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
+          <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-mono text-slate-400">Uptime</span>
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">Uptime</span>
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
             </div>
             <div className="mt-1 flex items-baseline gap-1">
-              <span className="text-xl font-bold font-mono text-slate-100 tabular-nums">
+              <span className="text-xl font-bold font-mono text-slate-900 dark:text-slate-100 tabular-nums">
                 {machine.uptime}%
               </span>
-              <span className="text-[10px] font-mono text-emerald-400">(MTBF 2.4k hrs)</span>
+              <span className="text-[10px] font-mono text-emerald-700 dark:text-emerald-400">(MTBF 2.4k hrs)</span>
             </div>
-            <div className="w-full bg-slate-800 h-1 rounded-full mt-2 overflow-hidden">
+            <div className="w-full bg-slate-200 dark:bg-slate-800 h-1 rounded-full mt-2 overflow-hidden">
               <div
-                className="bg-emerald-400 h-full rounded-full"
+                className="bg-emerald-500 dark:bg-emerald-400 h-full rounded-full"
                 style={{ width: `${machine.uptime}%` }}
               />
             </div>
           </div>
 
           {/* Operating Speed */}
-          <div className="p-3 rounded-lg bg-slate-900/80 border border-slate-800">
+          <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800">
             <div className="flex items-center justify-between">
-              <span className="text-[11px] font-mono text-slate-400">Operating Speed</span>
-              <Gauge className="w-3.5 h-3.5 text-sky-400" />
+              <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400">Operating Speed</span>
+              <Gauge className="w-3.5 h-3.5 text-sky-600 dark:text-sky-400" />
             </div>
             <div className="mt-1 flex items-baseline gap-1">
-              <span className="text-xl font-bold font-mono text-slate-100 tabular-nums">
+              <span className="text-xl font-bold font-mono text-slate-900 dark:text-slate-100 tabular-nums">
                 {machine.operatingSpeedRpm}
               </span>
-              <span className="text-xs font-mono text-slate-400">RPM</span>
+              <span className="text-xs font-mono text-slate-500 dark:text-slate-400">RPM</span>
             </div>
-            <p className="text-[10px] font-mono text-slate-400 mt-1 truncate">
+            <p className="text-[10px] font-mono text-slate-500 dark:text-slate-400 mt-1 truncate">
               Rated: {machine.ratedSpeedRpm} RPM • {machine.ratedPowerKw} kW
             </p>
           </div>
         </div>
 
         {/* Inspection & Maintenance Dates */}
-        <div className="mt-3.5 space-y-2 p-3 rounded-lg bg-slate-900/50 border border-slate-800/80 text-xs">
+        <div className="mt-3.5 space-y-2 p-3 rounded-lg bg-slate-50/70 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/80 text-xs">
           <div className="flex items-center justify-between">
-            <span className="text-slate-400 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
               Last Inspection Date:
             </span>
-            <span className="font-mono text-slate-200 font-medium">
+            <span className="font-mono text-slate-800 dark:text-slate-200 font-medium">
               {machine.lastInspectionDate}
             </span>
           </div>
 
-          <div className="flex items-center justify-between border-t border-slate-800/80 pt-2">
-            <span className="text-slate-400 flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-emerald-400" />
+          <div className="flex items-center justify-between border-t border-slate-200/70 dark:border-slate-800/80 pt-2">
+            <span className="text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
+              <Calendar className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
               Next Scheduled Inspection:
             </span>
-            <span className="font-mono text-emerald-300 font-semibold">
+            <span className="font-mono text-emerald-700 dark:text-emerald-300 font-semibold">
               {machine.nextInspectionDate}
             </span>
           </div>
@@ -123,14 +123,14 @@ export const MachineStatusCard: React.FC<MachineStatusCardProps> = ({ machine })
       </div>
 
       {/* Simulated Telemetry Node Footer */}
-      <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono">
-        <div className="flex items-center gap-2 text-slate-400">
-          <Radio className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+      <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-[11px] font-mono">
+        <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+          <Radio className="w-3.5 h-3.5 text-amber-500 shrink-0" />
           <span className="truncate max-w-[170px]" title={machine.telemetryNode.name}>
             {machine.telemetryNode.name}
           </span>
         </div>
-        <span className="text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20 shrink-0">
+        <span className="text-amber-800 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10 px-2 py-0.5 rounded border border-amber-300 dark:border-amber-500/20 shrink-0">
           MOCK SENSORS
         </span>
       </div>

@@ -236,7 +236,7 @@ export const PlaceholderPage: React.FC = () => {
       <div className="flex items-center justify-between">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-emerald-400 transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-mono text-slate-500 hover:text-emerald-600 dark:text-slate-400 dark:hover:text-emerald-400 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Overview Dashboard</span>
@@ -246,22 +246,22 @@ export const PlaceholderPage: React.FC = () => {
       </div>
 
       {/* Main Hero Card */}
-      <div className="rounded-xl bg-[#0d121e] border border-slate-800/90 p-6 sm:p-8 shadow-sm">
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-5 pb-6 border-b border-slate-800/80">
+      <div className="rounded-xl bg-white dark:bg-[#0d121e] border border-slate-200/90 dark:border-slate-800/90 p-6 sm:p-8 shadow-sm dark:shadow-none theme-transition">
+        <div className="flex flex-col md:flex-row md:items-start justify-between gap-5 pb-6 border-b border-slate-100 dark:border-slate-800/80">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0 shadow-sm">
+            <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 flex items-center justify-center text-emerald-700 dark:text-emerald-400 shrink-0 shadow-sm">
               <Icon className="w-6 h-6" />
             </div>
             <div>
               <div className="flex items-center gap-3 flex-wrap">
-                <h1 className="text-xl sm:text-2xl font-bold text-slate-100 tracking-tight">
+                <h1 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-slate-100 tracking-tight">
                   {config.title}
                 </h1>
-                <span className="px-2.5 py-1 text-xs font-mono font-semibold rounded-md bg-amber-500/10 text-amber-300 border border-amber-500/30">
+                <span className="px-2.5 py-1 text-xs font-mono font-semibold rounded-md bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-500/10 dark:text-amber-300 dark:border-amber-500/30">
                   Scheduled: {config.milestone}
                 </span>
               </div>
-              <p className="text-sm text-slate-400 mt-1 max-w-2xl leading-relaxed">
+              <p className="text-sm text-slate-600 dark:text-slate-400 mt-1 max-w-2xl leading-relaxed">
                 {config.subtitle}
               </p>
             </div>
@@ -270,7 +270,7 @@ export const PlaceholderPage: React.FC = () => {
           <div className="flex items-center gap-2 self-start md:self-auto">
             <Link
               to="/"
-              className="px-3.5 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-mono font-semibold transition-colors flex items-center gap-2"
+              className="px-3.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-500/10 dark:hover:bg-emerald-500/20 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-300 text-xs font-mono font-semibold transition-colors flex items-center gap-2"
             >
               <span>View Milestone 1 Dashboard</span>
               <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
@@ -279,8 +279,8 @@ export const PlaceholderPage: React.FC = () => {
         </div>
 
         {/* Milestone Scope Notice */}
-        <div className="mt-6 p-4 rounded-lg bg-slate-900/80 border border-slate-800 text-xs text-slate-300 leading-relaxed">
-          <div className="flex items-center gap-2 font-mono text-amber-400 font-semibold mb-1">
+        <div className="mt-6 p-4 rounded-lg bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 leading-relaxed">
+          <div className="flex items-center gap-2 font-mono text-amber-700 dark:text-amber-400 font-semibold mb-1">
             <Clock className="w-4 h-4" />
             <span>Development Roadmap & Architectural Boundary:</span>
           </div>
@@ -291,7 +291,7 @@ export const PlaceholderPage: React.FC = () => {
 
         {/* Planned Capabilities Grid */}
         <div className="mt-8">
-          <h2 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold mb-4">
+          <h2 className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold mb-4">
             Key Capabilities Scheduled for {config.milestone}
           </h2>
 
@@ -299,27 +299,27 @@ export const PlaceholderPage: React.FC = () => {
             {config.plannedFeatures.map((feat, idx) => (
               <div
                 key={idx}
-                className="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-slate-700/80 transition-all flex flex-col justify-between"
+                className="p-4 rounded-xl bg-slate-50/70 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/80 hover:border-slate-300 dark:hover:border-slate-700/80 transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-800 text-emerald-400 border border-slate-700">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white dark:bg-slate-800 text-emerald-700 dark:text-emerald-400 border border-slate-200 dark:border-slate-700 font-medium">
                       {feat.tag}
                     </span>
-                    <span className="text-[10px] font-mono text-slate-500">
+                    <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500">
                       Phase {idx + 1}
                     </span>
                   </div>
-                  <h3 className="text-sm font-semibold text-slate-200">
+                  <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200">
                     {feat.title}
                   </h3>
-                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1 leading-relaxed">
                     {feat.description}
                   </p>
                 </div>
 
-                <div className="mt-4 pt-2.5 border-t border-slate-800/60 flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+                <div className="mt-4 pt-2.5 border-t border-slate-200/60 dark:border-slate-800/60 flex items-center gap-1.5 text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
                   <span>Specification defined</span>
                 </div>
               </div>
@@ -329,27 +329,27 @@ export const PlaceholderPage: React.FC = () => {
 
         {/* Architecture Spec Table */}
         <div className="mt-8">
-          <h2 className="text-xs font-mono uppercase tracking-wider text-slate-400 font-semibold mb-4 flex items-center gap-2">
-            <Terminal className="w-4 h-4 text-slate-400" />
+          <h2 className="text-xs font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold mb-4 flex items-center gap-2">
+            <Terminal className="w-4 h-4 text-slate-400 dark:text-slate-500" />
             <span>Target Tech Stack & Integration Protocol</span>
           </h2>
 
-          <div className="rounded-xl border border-slate-800 overflow-hidden">
+          <div className="rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden">
             <table className="w-full text-left text-xs font-mono">
-              <thead className="bg-slate-950/80 border-b border-slate-800 text-slate-400">
+              <thead className="bg-slate-50 dark:bg-slate-950/80 border-b border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400">
                 <tr>
                   <th className="py-2.5 px-4 font-semibold uppercase text-[10px]">Architecture Layer</th>
                   <th className="py-2.5 px-4 font-semibold uppercase text-[10px]">Technology / Standard</th>
                   <th className="py-2.5 px-4 font-semibold uppercase text-[10px]">Integration Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-800/80 text-slate-300">
+              <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-700 dark:text-slate-300">
                 {config.technicalArchitecture.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-slate-900/40">
-                    <td className="py-2.5 px-4 font-medium text-slate-200">{row.component}</td>
-                    <td className="py-2.5 px-4 text-emerald-400">{row.technology}</td>
+                  <tr key={idx} className="hover:bg-slate-50/80 dark:hover:bg-slate-900/40">
+                    <td className="py-2.5 px-4 font-medium text-slate-900 dark:text-slate-200">{row.component}</td>
+                    <td className="py-2.5 px-4 text-emerald-700 dark:text-emerald-400">{row.technology}</td>
                     <td className="py-2.5 px-4">
-                      <span className="px-2 py-0.5 rounded text-[10px] bg-slate-800 text-slate-300 border border-slate-700">
+                      <span className="px-2 py-0.5 rounded text-[10px] bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
                         {row.status}
                       </span>
                     </td>
