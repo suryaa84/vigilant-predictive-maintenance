@@ -13,6 +13,7 @@ import { NotificationDrawer } from './NotificationDrawer';
 import { DemoTag } from '../common/DemoTag';
 import { StatusPill } from '../common/StatusPill';
 import { ThemeToggle } from '../common/ThemeToggle';
+import { useNotifications } from '../../context/useNotifications';
 
 interface HeaderProps {
   selectedMachine: Machine;
@@ -30,8 +31,8 @@ export const Header: React.FC<HeaderProps> = ({
   subtitle = 'Fleet Health & Diagnostics',
 }) => {
   const [machineDropdownOpen, setMachineDropdownOpen] = useState(false);
-  const [notificationOpen, setNotificationOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const { unreadCount, isOpen: notificationOpen, toggleOpen: toggleNotification, close: closeNotification } = useNotifications();
 
   const machineDropdownRef = useRef<HTMLDivElement>(null);
   const notifRef = useRef<HTMLDivElement>(null);
@@ -47,7 +48,7 @@ export const Header: React.FC<HeaderProps> = ({
         setMachineDropdownOpen(false);
       }
       if (notifRef.current && !notifRef.current.contains(e.target as Node)) {
-        setNotificationOpen(false);
+        closeNotification();
       }
       if (
         userMenuRef.current &&
@@ -58,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  }, [closeNotification]);
 
   return (
     <header className="sticky top-0 z-30 h-16 bg-white/92 dark:bg-[#090d15]/90 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800/80 px-4 lg:px-6 flex items-center justify-between gap-4 theme-transition">
@@ -188,18 +189,27 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Notifications Icon Button */}
         <div className="relative" ref={notifRef}>
           <button
-            onClick={() => setNotificationOpen(!notificationOpen)}
+            onClick={toggleNotification}
             className="relative p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700/80 hover:border-slate-300 dark:hover:border-slate-600 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-slate-100 transition-colors shadow-xs cursor-pointer"
-            aria-label="View notifications"
+            aria-label={`View notifications (${unreadCount} unread)`}
+            aria-expanded={notificationOpen}
           >
             <Bell className="w-4 h-4" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-rose-500 border-2 border-white dark:border-slate-900" />
+            {unreadCount > 0 && (
+              <span
+                className="absolute -top-1 -right-1 flex h-2.5 w-2.5 items-center justify-center"
+                aria-hidden="true"
+              >
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-rose-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-rose-500 border border-white dark:border-slate-900" />
+              </span>
+            )}
           </button>
 
           {/* Drawer / Popover */}
           <NotificationDrawer
             isOpen={notificationOpen}
-            onClose={() => setNotificationOpen(false)}
+            onClose={closeNotification}
           />
         </div>
 

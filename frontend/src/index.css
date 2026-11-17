@@ -119,8 +119,6 @@
     -moz-osx-font-smoothing: grayscale;
     min-height: 100vh;
     overflow-x: hidden;
-    transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-                color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   #root {
@@ -150,12 +148,49 @@
   background: var(--scrollbar-thumb-hover);
 }
 
-/* Reusable theme smooth transition utility */
+/* Reusable theme smooth transition utility for interactive elements */
 .theme-transition {
-  transition: background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              color 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Active global smooth transition during theme switching (250-350ms) */
+.theme-transitioning,
+.theme-transitioning body,
+.theme-transitioning aside,
+.theme-transitioning header,
+.theme-transitioning main,
+.theme-transitioning footer,
+.theme-transitioning nav,
+.theme-transitioning div,
+.theme-transitioning button,
+.theme-transitioning span,
+.theme-transitioning p,
+.theme-transitioning h1,
+.theme-transitioning h2,
+.theme-transitioning h3,
+.theme-transitioning table,
+.theme-transitioning th,
+.theme-transitioning td {
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Respect user's prefers-reduced-motion accessibility setting */
+@media (prefers-reduced-motion: reduce) {
+  .theme-transitioning,
+  .theme-transitioning *,
+  .theme-transitioning *::before,
+  .theme-transitioning *::after,
+  .theme-transition,
+  body {
+    transition: none !important;
+    animation: none !important;
+  }
 }
 
 /* Subtle grid line utility for telemetry charts / panels */
