@@ -17,12 +17,13 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     return 'dark';
   });
 
+  const isInitialMount = useRef(true);
   const transitionTimerRef = useRef<number | null>(null);
 
-  const applyThemeToDOM = (newTheme: Theme, animate = false) => {
+  useEffect(() => {
     const root = document.documentElement;
 
-    if (animate) {
+    if (!isInitialMount.current) {
       root.classList.add('theme-transitioning');
       if (transitionTimerRef.current) {
         window.clearTimeout(transitionTimerRef.current);
@@ -30,41 +31,39 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       transitionTimerRef.current = window.setTimeout(() => {
         root.classList.remove('theme-transitioning');
       }, 350);
+    } else {
+      isInitialMount.current = false;
     }
 
-    root.setAttribute('data-theme', newTheme);
-    if (newTheme === 'dark') {
+    root.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
       root.classList.add('dark');
       root.classList.remove('light');
     } else {
       root.classList.add('light');
       root.classList.remove('dark');
     }
-  };
 
-  const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-    applyThemeToDOM(newTheme, true);
     try {
-      localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+      localStorage.setItem(THEME_STORAGE_KEY, theme);
     } catch {
       // Ignore storage errors
     }
-  };
 
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
-  // Initial mount: ensure DOM attributes match without triggering animated transition
-  useEffect(() => {
-    applyThemeToDOM(theme, false);
     return () => {
       if (transitionTimerRef.current) {
         window.clearTimeout(transitionTimerRef.current);
       }
     };
-  }, []);
+  }, [theme]);
+
+  const setTheme = (newTheme: Theme) => {
+    setThemeState(newTheme);
+  };
+
+  const toggleTheme = () => {
+    setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
